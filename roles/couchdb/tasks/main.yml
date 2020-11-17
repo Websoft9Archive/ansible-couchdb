@@ -27,10 +27,8 @@
 - name: Configure CouchDB - auto create database
   lineinfile:
     dest: /opt/couchdb/etc/local.ini
-    regexp: '^[couchdb]'
-    insertbefore: '^[couch_peruser]'
+    insertafter: '^[couchdb]'
     line: "single_node=true"
-    
       
 - name: Enable CouchDB service
   service:
