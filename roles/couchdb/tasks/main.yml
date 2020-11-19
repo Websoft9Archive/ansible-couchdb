@@ -9,14 +9,6 @@
     path: /data/couchdb
     state: directory
 
-- name: Configure CouchDB - enable remote connection
-  lineinfile:
-    path: /opt/couchdb/etc/default.ini
-    regexp: 'bind_address = 127.0.0.1'
-    line: 'bind_address = 0.0.0.0'
-    firstmatch: yes
-    backrefs: yes 
-
 - name: Configure CouchDB - enable administrator password
   blockinfile:
     path: /opt/couchdb/etc/default.ini
@@ -32,15 +24,14 @@
      
 # local.ini file needs to be created after CouchDB is started
 - name: Configure CouchDB - auto create database
-  lineinfile:
-    dest: /opt/couchdb/etc/local.ini
-    insertafter: '^[couchdb]'
-    line: "single_node=true"
+  shell: |
+    couchdbLine=$(sed -n "/couchdb/=" /opt/couchdb/etc/local.ini)
+    sed -e "$couchdbLine asingle_node=true" -i /opt/couchdb/etc/local.ini
     
 - name: Enable CouchDB service
   service:
     name: couchdb
-    state: started
+    state: restarted
     enabled: yes
     
 # set soft link, -b cover the exist links
