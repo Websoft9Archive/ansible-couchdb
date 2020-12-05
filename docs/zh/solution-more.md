@@ -32,7 +32,7 @@
 
 1. 修改 CouchDB 配置文件 */opt/couchdb/etc/default.ini*
    ```
-  将 bindIP 修改为 0.0.0.0 或 本地电脑公网IP
+      将 bindIP 修改为 0.0.0.0 或 本地电脑公网IP
       #bind_address = 127.0.0.1
       bind_address = 0.0.0.0
    ```
