@@ -41,6 +41,7 @@
 2. CouchDB
    ```
    systemctl restart couchdb
+   ```
 
 ## 密码管理
 
@@ -52,7 +53,7 @@
    ```
    admin = $new_password
    ```
-2. 重启MongoDB服务
+2. 重启 CouchDB 服务
    ```
    systemctl restart couchdb
    ```
