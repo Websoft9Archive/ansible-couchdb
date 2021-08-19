@@ -62,7 +62,7 @@ This program provided by Websoft9 contains a series of software with separate co
 
 #### How to install and view the latest release?
 
-This repository install way is Package isntallation , you can  view the version from [Official URL](https://docs.couchdb.org/en/latest/install/unix.html#installation-using-the-apache-couchdb-convenience-binary-packages).  
+This repository install way is Package isntallation , you can  view the version from [Official URL](https://docs.couchdb.org/en/latest/whatsnew/index.html).  
 We will check [Release version](https://github.com/Websoft9/ansible-couchdb/releases) regularly. Update and test this project to ensure that users can successfully install the required version of CouchDB.
 
 #### Can I run this repository on Ansible Tower? 
