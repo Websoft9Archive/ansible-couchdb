@@ -19,6 +19,12 @@
     enabled: yes
   when: ansible_distribution != "CentOS"
 
+# configure yum before install couchdb
+- name: Configure yum
+  shell: |
+    sudo yum install -y yum-utils
+    sudo yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
+
 # install couchdb
 - name: Install CouchDB
   yum:
