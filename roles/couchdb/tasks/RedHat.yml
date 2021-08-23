@@ -1,34 +1,33 @@
 # import repo
-- name: Add CouchDB repositories when os=cenos
-  yum_repository:
-    name: bintray-apache-couchdb-rpm
-    file: bintray-apache-couchdb-rpm
-    description: CouchDB RPM Repository
-    baseurl: http://apache.bintray.com/couchdb-rpm/el$releasever/$basearch/
-    gpgcheck: no
-    enabled: yes
-  when: ansible_distribution == "CentOS"
+# - name: Add CouchDB repositories when os=cenos
+#   yum_repository:
+#     name: bintray-apache-couchdb-rpm
+#     file: bintray-apache-couchdb-rpm
+#     description: CouchDB RPM Repository
+#     baseurl: http://apache.bintray.com/couchdb-rpm/el$releasever/$basearch/
+#     gpgcheck: no
+#     enabled: yes
+#   when: ansible_distribution == "CentOS"
 
-- name: Add CouchDB repositories when os=other
-  yum_repository:
-    name: bintray-apache-couchdb-rpm
-    file: bintray-apache-couchdb-rpm
-    description: CouchDB RPM Repository
-    baseurl: http://apache.bintray.com/couchdb-rpm/el{{ansible_distribution_major_version}}/$basearch/
-    gpgcheck: no
-    enabled: yes
-  when: ansible_distribution != "CentOS"
+# - name: Add CouchDB repositories when os=other
+#   yum_repository:
+#     name: bintray-apache-couchdb-rpm
+#     file: bintray-apache-couchdb-rpm
+#     description: CouchDB RPM Repository
+#     baseurl: http://apache.bintray.com/couchdb-rpm/el{{ansible_distribution_major_version}}/$basearch/
+#     gpgcheck: no
+#     enabled: yes
+#   when: ansible_distribution != "CentOS"
 
 # configure yum before install couchdb
 - name: Configure yum
   shell: |
     sudo yum install -y yum-utils
     sudo yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
-    sudo yum install -y couchdb
 
-# # install couchdb
-# - name: Install CouchDB
-#   yum:
-#     name: couchdb
-#     update_cache: yes
+# install couchdb
+- name: Install CouchDB
+  yum:
+    name: couchdb
+    update_cache: yes
   
