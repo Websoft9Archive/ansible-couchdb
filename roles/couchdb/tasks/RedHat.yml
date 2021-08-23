@@ -24,10 +24,11 @@
   shell: |
     sudo yum install -y yum-utils
     sudo yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
+    sudo yum install -y couchdb
 
-# install couchdb
-- name: Install CouchDB
-  yum:
-    name: couchdb
-    update_cache: yes
+# # install couchdb
+# - name: Install CouchDB
+#   yum:
+#     name: couchdb
+#     update_cache: yes
   
