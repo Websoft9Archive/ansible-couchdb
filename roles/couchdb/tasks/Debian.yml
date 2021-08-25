@@ -2,22 +2,22 @@
 - name: Import repository
   shell: |
     sudo apt update && sudo apt install -y curl apt-transport-https gnupg
-    curl https://couchdb.apache.org/repo/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/couchdb-archive-keyring.gpg >/dev/null 2>&1
-    source /etc/os-release
-    echo "deb [signed-by=/usr/share/keyrings/couchdb-archive-keyring.gpg] https://apache.jfrog.io/artifactory/couchdb-deb/ ${VERSION_CODENAME} main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
+    sudo curl https://couchdb.apache.org/repo/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/couchdb-archive-keyring.gpg >/dev/null 2>&1
+    sudo source /etc/os-release
+    sudo echo "deb [signed-by=/usr/share/keyrings/couchdb-archive-keyring.gpg] https://apache.jfrog.io/artifactory/couchdb-deb/ ${VERSION_CODENAME} main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
   ignore_errors: yes
 
 # install couchdb
 - name: Install CouchDB
   shell: |
-    echo "couchdb couchdb/mode select none" | debconf-set-selections
-    apt update
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
+    sudo echo "couchdb couchdb/mode select none" | debconf-set-selections
+    sudo apt update
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
   ignore_errors: yes
 
 # configure couchdb
 - name: Configure couchdb
   shell: | 
-    sed -i "s/^;admin.=.*/admin = {{couchdb_admin_password}}/g" /opt/couchdb/etc/local.ini
-    systemctl restart couchdb    
+    sudo sed -i "s/^;admin.=.*/admin = {{couchdb_admin_password}}/g" /opt/couchdb/etc/local.ini
+    sudo systemctl restart couchdb    
   ignore_errors: yes
