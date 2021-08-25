@@ -17,6 +17,4 @@
 - name: Configure couchdb
   shell: | 
     sed -i '95s/;//g' /opt/couchdb/etc/local.ini
-
-
-    
+    systemctl restart couchdb    
