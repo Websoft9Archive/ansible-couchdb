@@ -1,15 +1,6 @@
 # CHANGELOG
 
-## To do
-
-1. 更详细的规范说明
-
-## Logs
-
-### Bug Fixes
-
-* 2020-02-14  
-
-### Features
-
-* 2020-03-27  创建本模板语法
+## CouchDB v3.1.1-1 2021-08-25
+### Fixes and Enhancements
+- release to 3.1.1 #6
+- Install CouchDB by ansible need to interact ON Ubuntu #8
