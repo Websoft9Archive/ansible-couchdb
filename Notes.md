@@ -58,26 +58,22 @@ sudo systemctl enable couchdb
 
 ### Ubuntu
 
-```
-sudo apt-get install apache2 -y #安装apache
-sudo systemctl start apache2
-sudo systemctl enable apache2
+```shell
+# 添加签名证书
+sudo apt update && sudo apt install -y curl apt-transport-https gnupg
+curl https://couchdb.apache.org/repo/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/couchdb-archive-keyring.gpg >/dev/null 2>&1
+source /etc/os-release
+echo "deb [signed-by=/usr/share/keyrings/couchdb-archive-keyring.gpg] https://apache.jfrog.io/artifactory/couchdb-deb/ ${VERSION_CODENAME} main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
 
+# 通过设置 debcouf-set-selection来绕过安装CouchDB过程中出现的交互，
+# 同时设置DEBIAN_FRONTEND=noninteractive选项来避免交互
+echo "couchdb couchdb/mode select none" | debconf-set-selections
+apt update
+DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
 
-echo "deb https://apache.bintray.com/couchdb-deb xenial main" \ | sudo tee -a /etc/apt/sources.list           #添加CouchDB的官方存储库
-curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc \ | sudo apt-key add -                    #对添加的存储库进行签名
-sudo apt-get update -y        #更新存储库
-sudo apt-get install couchdb -y #安装couchdb
-
-
-选择配置为一个独立或群集节点
-输入绑定地址：0.0.0.0
-输入密码：
-确认密码：
-sudo systemctl start couchdb
-sudo systemctl enable couchdb
-
-
+# 由于绕过了交互，所以会出现couchdb正常启动。
+# 会导致后面的systemctl restart couchdb命令失败，所以将/opt/couchdb/etc/local.ini配置文件中的最后一行关于设置admin用户的行的注释去掉
+sed -i '95s/;//g' /opt/couchdb/etc/local.ini
 ```
 
 

@@ -1,12 +1,16 @@
 # pre-installation
 - name: Import repository
   shell: |
-    apt-cache install -y curl apt-transport-https gnupg
+    apt update && sudo apt install -y curl apt-transport-https gnupg
     curl https://couchdb.apache.org/repo/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/couchdb-archive-keyring.gpg >/dev/null 2>&1
     source /etc/os-release
-    echo "deb [signed-by=/usr/share/keyrings/couchdb-archive-keyring.gpg] https://apache.jfrog.io/artifactory/couchdb-deb/ ${VERSION_CODENAME} main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
+    echo "deb [signed-by=/usr/share/keyrings/couchdb-archive-keyring.gpg] https://apache.jfrog.io/artifactory/couchdb-deb/ {{ansible_distribution_release}} main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
+  ignore_errors: yes
+
+# install couchdb
+- name: Install CouchDB
+  shell: |
+    echo "couchdb couchdb/mode select none" | debconf-set-selections
     apt update
-    apt-cache install -y couchdb
-
-
-    
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
+  ignore_errors: yes
