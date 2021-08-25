@@ -12,7 +12,7 @@
   shell: |
     echo "couchdb couchdb/mode select none" | debconf-set-selections
     apt update
-    DEBIAN_FRONTEND=noninteractive apt install -y --force-yes couchdb
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
   ignore_errors: yes
 
 # configure couchdb
