@@ -18,6 +18,6 @@
 # configure couchdb
 - name: Configure couchdb
   shell: | 
-    sed -i "s/^;admin.=.*/admin = $new_password/g" /opt/couchdb/etc/local.ini
+    sed -i "s/^;admin.=.*/admin = {{couchdb_admin_password}}/g" /opt/couchdb/etc/local.ini
     systemctl restart couchdb    
   ignore_errors: yes
