@@ -14,10 +14,3 @@
     apt update
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
   ignore_errors: yes
-
-# # configure couchdb
-# - name: Configure couchdb
-#   shell: | 
-#     sed -i "s/^;admin.=.*/admin = {{couchdb_admin_password}}/g" /opt/couchdb/etc/local.ini
-#     systemctl restart couchdb    
-#   ignore_errors: yes
