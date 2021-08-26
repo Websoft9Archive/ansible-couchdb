@@ -1,9 +1,14 @@
-<<<<<<< HEAD
-=======
 # import repo
-- name: Add CouchDB repositories when os=cenos
+- name: Add CouchDB repositories
   shell: |
     yum install -y yum-utils
     yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
+
+- name: Change distribution release of the couchdb repo
+  shell: |
+    sed -i '3s/el$releasever/el7/g' /etc/yum.repos.d/couchdb.repo
+  when: ansible_distribution != "CentOS" 
+
+- name: Install CouchDB
+  shell: |
     yum install -y couchdb
->>>>>>> main
