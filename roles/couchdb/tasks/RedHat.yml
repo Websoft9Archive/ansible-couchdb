@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+=======
+# import repo
+- name: Add CouchDB repositories when os=cenos
+  shell: |
+    yum install -y yum-utils
+    yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
+    yum install -y couchdb
+>>>>>>> main
