@@ -23,9 +23,9 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 5984 | HTTP requests for CouchDB Console| Required |
+| HTTP | 5984 | HTTP requests for CouchDB Console| Optional |
 | HTTP | 80 |  nginx HTTP port | Required |
-| HTTP | 443 | nginx HTTPS port| Required |
+| HTTP | 443 | nginx HTTPS port| Optional |
 
 
 ## Version
