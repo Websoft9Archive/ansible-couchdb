@@ -29,7 +29,7 @@ Nginx 日志文件路径 : */var/log/nginx/*
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 5984 | 通过 HTTP 访问 CouchDB 控制台 | 可选 |
+| HTTP | 5984 | 通过 HTTP 访问 CouchDB 控制台 | 必选 |
 | HTTP | 80 | 通过 nginx转发后HTTP 访问 | 可选 |
 | HTTP | 443 | 通过HTTPs 访问 CouchDB 控制台 | 可选 |
 
