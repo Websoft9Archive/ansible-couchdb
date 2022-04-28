@@ -3,6 +3,7 @@
   shell: |
     yum install -y yum-utils
     yum-config-manager --add-repo https://couchdb.apache.org/repo/couchdb.repo
+    yum update
 
 - name: Change distribution release of the couchdb repo
   shell: |
