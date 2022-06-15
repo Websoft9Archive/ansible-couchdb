@@ -11,6 +11,6 @@
 - name: Install CouchDB
   shell: |
     echo "couchdb couchdb/mode select none" | debconf-set-selections
-    apt update
+    apt update -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
   ignore_errors: yes
